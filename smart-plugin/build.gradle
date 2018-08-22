@@ -1,0 +1,27 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.android.tools.build:gradle:3.1.3'
+}
+
+group='com.smart.plugin'
+version='1.0.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+//            repository(url: uri('../repo'))
+            repository(url: uri('../repo-local')) //deploy到本地仓库
+        }
+    }
+}
