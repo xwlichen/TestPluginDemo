@@ -1,19 +1,19 @@
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
-def projectName = "timePlugin"
+def projectName = "smart-plugin"
 def mavenDesc = 'your desc'
-def baseUrl = 'https://github.com/yourBaseUrl'
+def baseUrl = 'https://github.com/xwlichen'
 def siteUrl = baseUrl
-def gitUrl = "${baseUrl}/yourGitUrl"
-def issueUrl = "${baseUrl}/yourGitIssueUrl"
+def gitUrl = "${baseUrl}/TestPluginDemo.git"
+def issueUrl = "${baseUrl}/TestPluginDemo/issues"
 
 def licenseIds = ['Apache-2.0']
 def licenseNames = ['The Apache Software License, Version 2.0']
 def licenseUrls = ['http://www.apache.org/licenses/LICENSE-2.0.txt']
-def inception = '2016'
+def inception = '2018'
 
-def username = 'lizhangqu'
+def username = 'xwlichen'
 
 install {
     repositories {
@@ -25,7 +25,7 @@ install {
                 url siteUrl
 
                 // Archive
-                groupId project.group
+                groupId ='com.smart.plugin'
                 artifactId archivesBaseName
                 version project.version
 
@@ -72,18 +72,28 @@ artifacts {
 
 
 bintray {
-    user = BINTRAY_USER
-    key = BINTRAY_KEY
+
+    Properties properties = new Properties()
+
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+
+    user = properties.getProperty("bintray.user")
+
+    key = properties.getProperty("bintray.apikey")
+
+//    user = BINTRAY_USER
+//    key = BINTRAY_KEY
     configurations = ['archives']
     pkg {
-        repo = 'maven'
-        name = projectName
+        repo = 'smart'
+        name = 'smart-plugin'
         desc = mavenDesc
-        websiteUrl = siteUrl
-        issueTrackerUrl = issueUrl
-        vcsUrl = gitUrl
+        websiteUrl = 'https://github.com/xwlichen/TestPluginDemo'
+        issueTrackerUrl = 'https://github.com/xwlichen/TestPluginDemo'
+        vcsUrl = 'https://github.com/xwlichen/TestPluginDemo'
         labels = ['gradle', 'plugin', 'time']
-        licenses = licenseIds
+        licenses =  licenseIds
         publish = true
         publicDownloadNumbers = true
     }

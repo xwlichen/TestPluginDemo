@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.smart.plugin.smart-plugin'
+//apply plugin: 'com.smart.plugin.smart-plugin'
 
 android {
     compileSdkVersion 27
